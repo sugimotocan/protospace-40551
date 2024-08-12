@@ -1,0 +1,18 @@
+<main class="main">
+  <div class="inner">
+    <%= render partial: "prototype", collection: @prototypes %>
+
+    <% if user_signed_in? %>
+      <div class="greeting">
+       こんにちは、<%= link_to current_user.name, root_path, class: :greeting__link %>さん
+      </div>
+    <% else %>
+       <div>ユーザーはログインしていません</div>
+    <% end %>
+
+    <!-- ここは必要ない<かもしれません -->
+    <!-- <div class="card__wrapper"> -->
+    <!--  <%= render partial: "prototype", collection: @prototypes %> -->
+    <!-- </div> -->
+  </div>
+</main>
