@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_11_031619) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_08_013216) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,24 +40,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_11_031619) do
   end
 
   create_table "comments", charset: "utf8", force: :cascade do |t|
-    t.text "content"
+    t.text "text"
+    t.bigint "user_id", null: false
     t.bigint "prototype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["prototype_id"], name: "index_comments_on_prototype_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "prototypes", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "image"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "catch_copy"
     t.text "concept"
     t.string "name"
-    t.integer "user_id"
     t.index ["user_id"], name: "index_prototypes_on_user_id"
   end
 
@@ -84,4 +85,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_11_031619) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "prototypes"
+  add_foreign_key "comments", "users"
+  add_foreign_key "prototypes", "users"
 end
