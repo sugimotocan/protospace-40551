@@ -6,7 +6,7 @@
   <p><%= prototype.catch_copy %></p>
   <p>投稿者: <%= link_to prototype.user.name, user_path(prototype.user) %></p>
 
-  <% if params[:controller] != 'users' && current_user == prototype.user %>
+  <% if params[:controller] != 'prototypes' && current_user == prototype.user %>
     <div class="prototype__manage">
       <%= link_to "編集する", edit_prototype_path(prototype), class: :prototype__btn %>
       <%= link_to "削除する", prototype, method: :delete, data: { confirm: "本当に削除しますか？" }, class: :prototype__btn %>
