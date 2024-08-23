@@ -1,20 +1,17 @@
 <main class="main">
   <div class="inner">
-    <%= render partial: "prototype", collection: @prototypes %>
+    <%%>= render partial: "prototype", collection: @prototypes %>
 
     <% if user_signed_in? %>
       <div class="greeting">
-       こんにちは、<%= link_to current_user.name, user_path(current_user) %>さん
+        こんにちは、<%= link_to current_user.name, user_path(current_user) %>さん
      <%# <p>こんにちは、<%= link_to current_user.name, user_path(current_user) さん！</p> %>
 
       </div>
     <% else %>
-       <div>ユーザーはログインしていません</div>
+      <div>ユーザーはログインしていません</div>
     <% end %>
 
-    <!-- ここは必要ない<かもしれません -->
-    <!-- <div class="card__wrapper"> -->
-    <!--  <%= render partial: "prototype", collection: @prototypes %> -->
-    <!-- </div> -->
+
   </div>
 </main>
