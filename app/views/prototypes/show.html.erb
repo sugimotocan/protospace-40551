@@ -36,6 +36,19 @@
       </div>
       <div class="prototype__comments">
         <% if user_signed_in? %> <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
+         <!-- エラーメッセージの表示 -->
+          <% if @comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+              <ul>
+                <% @comment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <!-- /エラーメッセージの表示 -->
+
           <%= form_with(model: [@prototype, @comment], local: true) do |f| %>
             <div class="field">
               <%= f.label :content, "コメント" %><br />
